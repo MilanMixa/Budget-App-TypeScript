@@ -1,0 +1,29 @@
+.income,
+.expenses {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 6px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.income {
+  background: #2b507f;
+  color: white;
+}
+
+.expenses {
+  background: #dc143c;
+  color: white;
+}
+
+.hidden {
+  visibility: hidden;
+  margin-left: 5px;
+}
+
+.percentage {
+  background: #ff2400;
+  border-radius: 5px;
+  margin-left: 5px;
+}

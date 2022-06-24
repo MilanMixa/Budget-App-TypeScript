@@ -1,0 +1,29 @@
+.main-form {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.description-input {
+  width: 100%;
+}
+
+.number-input {
+  width: 20%;
+}
+
+@media only screen and (max-width: 800px) {
+  .main-form {
+    display: block;
+    margin-bottom: 20px;
+  }
+  .main-form input {
+    margin-bottom: 10px;
+  }
+  .description-input {
+    width: 80%;
+  }
+  .number-input {
+    width: 70%;
+  }
+}

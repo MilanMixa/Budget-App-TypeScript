@@ -1,0 +1,9 @@
+.single-income-item {
+  background: #2b507f;
+  color: white;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
