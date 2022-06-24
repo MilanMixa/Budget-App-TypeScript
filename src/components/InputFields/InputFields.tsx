@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { SetStateAction, useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 //styles
@@ -8,26 +8,26 @@ export const InputFields = () => {
   const { addIncome, addExpense } = useContext(GlobalContext);
 
   // state for input fields
-  const [addDescription, setAddDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [addDescription, setAddDescription] = useState<string>("");
+  const [amount, setAmount] = useState<number | string>(0);
 
   // state for select
-  const [selected, setSelected] = useState("-");
+  const [selected, setSelected] = useState<string>("-");
 
   //handler for select
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { value: SetStateAction<string> } }) => {
     setSelected(e.target.value);
   };
 
   // handle for submit
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     // if the selected value is -, updating expenses and reseting input fields
     if (selected === "-") {
       const newExpense = {
         text: addDescription,
-        amount: amount * 1,
+        amount: (amount as number) * 1,
         id: Math.floor(Math.random() * 100000000),
       };
       addExpense(newExpense);
@@ -38,7 +38,7 @@ export const InputFields = () => {
     if (selected === "+") {
       const newIncome = {
         text: addDescription,
-        amount: amount * 1,
+        amount: (amount as number) * 1,
         id: Math.floor(Math.random() * 100000000),
       };
       addIncome(newIncome);

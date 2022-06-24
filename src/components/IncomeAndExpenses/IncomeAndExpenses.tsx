@@ -8,24 +8,26 @@ export const IncomeAndExpenses = () => {
   const { incomeTransactions, expenseTransactions } = useContext(GlobalContext);
 
   const income = incomeTransactions.map(
-    (incomeTransaction) => incomeTransaction.amount
+    (incomeTransaction: { amount: number[] }) => incomeTransaction.amount
   );
 
   const expense = expenseTransactions.map(
-    (expenseTransaction) => expenseTransaction.amount
+    (expenseTransaction: { amount: number[] }) => expenseTransaction.amount
   );
 
   // calculating total sum of income
-  const totalIncome = income.reduce((acc, item) => (acc += item), 0).toFixed(2);
+  const totalIncome = Number(
+    income.reduce((acc: number, item: number) => (acc += item), 0).toFixed(2)
+  );
 
   // calculating total sum of expenses
-  const totalExpense = expense
-    .reduce((acc, item) => (acc += item), 0)
-    .toFixed(2);
+  const totalExpense = Number(
+    expense.reduce((acc: number, item: number) => (acc += item), 0).toFixed(2)
+  );
 
   // calculating percentage
-  const result = (income, expense) => {
-    let percentage = ((expense * 100) / income).toFixed(2);
+  const result = (income: number, expense: number) => {
+    let percentage = Number(((expense * 100) / income).toFixed(2));
 
     if (!isFinite(percentage)) {
       percentage = 0;
@@ -35,7 +37,7 @@ export const IncomeAndExpenses = () => {
   const percent = result(totalIncome, totalExpense);
 
   // calculating the difference between income and expenses
-  const finalSum = (totalIncome - totalExpense).toFixed(2);
+  const finalSum = Number((totalIncome - totalExpense).toFixed(2));
 
   // logic for + or - sign for balance
   const sign = finalSum <= 0 ? "" : "+";

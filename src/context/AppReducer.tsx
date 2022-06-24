@@ -1,4 +1,14 @@
-export default (state, action) => {
+type CounterState = {
+  incomeTransactions: any[];
+  expenseTransactions: any[];
+};
+
+type CounterAction = {
+  type: string;
+  payload: any;
+};
+
+export default (state: CounterState, action: CounterAction) => {
   switch (action.type) {
     case "ADD_INCOME":
       return {
