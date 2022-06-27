@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 // styles
 import "./SingleIncome.css";
 
-export const SingleIncome = () => {
+export const SingleIncome: FC = () => {
   const { deleteTransaction, incomeTransactions } = useContext(GlobalContext);
 
   return (

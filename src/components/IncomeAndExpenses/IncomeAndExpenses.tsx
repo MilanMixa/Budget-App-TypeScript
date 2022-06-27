@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 // style
 import "./IncomeAndExpenses.css";
 
-export const IncomeAndExpenses = () => {
+export const IncomeAndExpenses: FC = () => {
   const { incomeTransactions, expenseTransactions } = useContext(GlobalContext);
 
   const income = incomeTransactions.map(

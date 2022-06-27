@@ -1,10 +1,10 @@
-import { SetStateAction, useContext, useState } from "react";
+import { FC, SetStateAction, useContext, useState } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 //styles
 import "./InputFields.css";
 
-export const InputFields = () => {
+export const InputFields: FC = () => {
   const { addIncome, addExpense } = useContext(GlobalContext);
 
   // state for input fields
