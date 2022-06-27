@@ -27,7 +27,7 @@ export const InputFields = () => {
     if (selected === "-") {
       const newExpense = {
         text: addDescription,
-        amount: (amount as number) * 1,
+        amount: amount as number,
         id: Math.floor(Math.random() * 100000000),
       };
       addExpense(newExpense);
@@ -38,7 +38,7 @@ export const InputFields = () => {
     if (selected === "+") {
       const newIncome = {
         text: addDescription,
-        amount: (amount as number) * 1,
+        amount: amount as number,
         id: Math.floor(Math.random() * 100000000),
       };
       addIncome(newIncome);

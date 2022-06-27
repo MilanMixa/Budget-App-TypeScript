@@ -1,4 +1,6 @@
-export default function Header() {
+import { FC } from "react";
+
+const Header: FC = () => {
   let month = new Date().toLocaleString("en-US", { month: "long" });
   let year = new Date().getUTCFullYear();
 
@@ -7,4 +9,6 @@ export default function Header() {
       Available budget in {month} {year}
     </div>
   );
-}
+};
+
+export default Header;

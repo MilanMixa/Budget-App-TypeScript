@@ -8,11 +8,11 @@ export const IncomeAndExpenses = () => {
   const { incomeTransactions, expenseTransactions } = useContext(GlobalContext);
 
   const income = incomeTransactions.map(
-    (incomeTransaction: { amount: number[] }) => incomeTransaction.amount
+    (incomeTransaction: { amount: number }) => incomeTransaction.amount
   );
 
   const expense = expenseTransactions.map(
-    (expenseTransaction: { amount: number[] }) => expenseTransaction.amount
+    (expenseTransaction: { amount: number }) => expenseTransaction.amount
   );
 
   // calculating total sum of income

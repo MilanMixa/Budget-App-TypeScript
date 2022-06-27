@@ -1,16 +1,19 @@
 import { createContext, useReducer, useEffect, ReactNode } from "react";
+import { IncomeAndExpense } from "../types";
 import AppReducer from "./AppReducer";
 
 type GlobalContextProviderProps = {
   children: ReactNode;
 };
 
+const noop = () => null;
+
 interface IinitialState {
-  addExpense: (expenseTransaction: any) => void;
-  addIncome: (incomeTransaction: any) => void;
-  deleteTransaction: (id: any) => void;
-  incomeTransactions: any;
-  expenseTransactions: any;
+  addExpense: (expenseTransaction: IncomeAndExpense) => void;
+  addIncome: (incomeTransaction: IncomeAndExpense) => void;
+  deleteTransaction: (id: number) => void;
+  incomeTransactions: IncomeAndExpense[];
+  expenseTransactions: IncomeAndExpense[];
 }
 
 const listOfIncome = localStorage.getItem("listOfIncome");
@@ -20,15 +23,9 @@ const initialState: IinitialState = {
   incomeTransactions: listOfIncome !== null ? JSON.parse(listOfIncome) : [],
   expenseTransactions:
     listOfExpenses !== null ? JSON.parse(listOfExpenses) : [],
-  addExpense: function (expenseTransaction: any): void {
-    throw new Error("Function not implemented.");
-  },
-  addIncome: function (incomeTransaction: any): void {
-    throw new Error("Function not implemented.");
-  },
-  deleteTransaction: function (id: any): void {
-    throw new Error("Function not implemented.");
-  },
+  addExpense: noop,
+  addIncome: noop,
+  deleteTransaction: noop,
 };
 
 export const GlobalContext = createContext(initialState);
@@ -50,21 +47,21 @@ export const GlobalContextProvider = ({
     );
   }, [state.incomeTransactions, state.expenseTransactions]);
 
-  const addExpense = (expenseTransaction: any) => {
+  const addExpense = (expenseTransaction: IncomeAndExpense) => {
     dispatch({
       type: "ADD_EXPENSE",
       payload: expenseTransaction,
     });
   };
 
-  const addIncome = (incomeTransaction: any) => {
+  const addIncome = (incomeTransaction: IncomeAndExpense) => {
     dispatch({
       type: "ADD_INCOME",
       payload: incomeTransaction,
     });
   };
 
-  const deleteTransaction = (id: any) => {
+  const deleteTransaction = (id: number) => {
     dispatch({
       type: "DELETE_TRANSACTION",
       payload: id,

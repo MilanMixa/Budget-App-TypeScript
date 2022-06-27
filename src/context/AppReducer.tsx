@@ -1,6 +1,8 @@
+import { IncomeAndExpense } from "../types";
+
 type CounterState = {
-  incomeTransactions: any[];
-  expenseTransactions: any[];
+  incomeTransactions: IncomeAndExpense[];
+  expenseTransactions: IncomeAndExpense[];
 };
 
 type CounterAction = {
@@ -8,7 +10,7 @@ type CounterAction = {
   payload: any;
 };
 
-export default (state: CounterState, action: CounterAction) => {
+const AppReducer = (state: CounterState, action: CounterAction) => {
   switch (action.type) {
     case "ADD_INCOME":
       return {
@@ -34,3 +36,5 @@ export default (state: CounterState, action: CounterAction) => {
       return state;
   }
 };
+
+export default AppReducer;

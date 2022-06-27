@@ -1,11 +1,4 @@
-import {
-  JSXElementConstructor,
-  Key,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
-  useContext,
-} from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
 
 //styles
@@ -16,54 +9,38 @@ export const SingleExpense = () => {
     useContext(GlobalContext);
 
   const income = incomeTransactions.map(
-    (incomeTransaction: { amount: any }) => incomeTransaction.amount
+    (incomeTransaction: { amount: number }) => incomeTransaction.amount
   );
 
   // calculating total sum of income
-  const totalIncome = income
-    .reduce((acc: any, item: any) => (acc += item), 0)
-    .toFixed(2);
+  const totalIncome = Number(
+    income.reduce((acc: number, item: number) => (acc += item), 0).toFixed(2)
+  );
 
   return (
     <div>
-      {expenseTransactions.map(
-        (transaction: {
-          id: Key | null | undefined;
-          text:
-            | string
-            | number
-            | boolean
-            | ReactElement<any, string | JSXElementConstructor<any>>
-            | ReactFragment
-            | ReactPortal
-            | null
-            | undefined;
-          amount: number;
-        }) => (
-          <li className="single-expense-item" key={transaction.id}>
-            <span>{transaction.text}</span>
-            <div>
-              <span> -{transaction.amount.toFixed(2)}</span>
-              <span className="percentage">
-                {Number(
-                  ((transaction.amount * 100) / totalIncome).toFixed(2)
-                ) === Infinity ||
-                Number(((transaction.amount * 100) / totalIncome).toFixed(2)) <
-                  0
-                  ? 0
-                  : ((transaction.amount * 100) / totalIncome).toFixed(2)}
-                %
-              </span>
-              <button
-                className="delete-btn"
-                onClick={() => deleteTransaction(transaction.id)}
-              >
-                x
-              </button>
-            </div>
-          </li>
-        )
-      )}
+      {expenseTransactions.map((transaction) => (
+        <li className="single-expense-item" key={transaction.id}>
+          <span>{transaction.text}</span>
+          <div>
+            <span> -{transaction.amount.toFixed(2)}</span>
+            <span className="percentage">
+              {Number(((transaction.amount * 100) / totalIncome).toFixed(2)) ===
+                Infinity ||
+              Number(((transaction.amount * 100) / totalIncome).toFixed(2)) < 0
+                ? 0
+                : ((transaction.amount * 100) / totalIncome).toFixed(2)}
+              %
+            </span>
+            <button
+              className="delete-btn"
+              onClick={() => deleteTransaction(transaction.id)}
+            >
+              x
+            </button>
+          </div>
+        </li>
+      ))}
     </div>
   );
 };
