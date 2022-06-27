@@ -9,7 +9,7 @@ export const InputFields: FC = () => {
 
   // state for input fields
   const [addDescription, setAddDescription] = useState<string>("");
-  const [amount, setAmount] = useState<number | string>(0);
+  const [amount, setAmount] = useState<number>(0);
 
   // state for select
   const [selected, setSelected] = useState<string>("-");
@@ -27,7 +27,7 @@ export const InputFields: FC = () => {
     if (selected === "-") {
       const newExpense = {
         text: addDescription,
-        amount: amount as number,
+        amount: amount,
         id: Math.floor(Math.random() * 100000000),
       };
       addExpense(newExpense);
@@ -38,7 +38,7 @@ export const InputFields: FC = () => {
     if (selected === "+") {
       const newIncome = {
         text: addDescription,
-        amount: amount as number,
+        amount: amount,
         id: Math.floor(Math.random() * 100000000),
       };
       addIncome(newIncome);
@@ -73,7 +73,7 @@ export const InputFields: FC = () => {
           required
           min={1}
           onChange={(e) => {
-            setAmount(e.target.value);
+            setAmount(parseInt(e.target.value));
           }}
           value={amount || ""}
         />
